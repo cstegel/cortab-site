@@ -10,8 +10,8 @@
 
 <body>
     <script type="module">
-        import init from "./cortab-site/wasm/cortab.js";
-        init();
+        import init from "./wasm/cortab.js";
+        init().catch(console.error);
     </script>
     <noscript>
         This website is made from rust-based WebAssembley. Enable scripts to view the site.
