@@ -2,4 +2,4 @@
 
 Website for learning guitar and ukelele chords 🎶
 
-Try it out at [cstegel.github.io/cortab-site](https://cstegel.github.io/cortab-site)
+Try it out at [cortab.fun](https://cortab.fun)
