@@ -1,0 +1,194 @@
+// TODO: seperate this into different files
+
+* {
+    /* Force width & height to include padding & borders */
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--app-bg-color);
+}
+
+.app {
+    background-color: var(--app-bg-color);
+    color: hsl(0, 0%, 100%);
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-top: 1em;
+}
+
+.app-layout {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.app-before,
+.app-after {
+    flex: 1 1;
+}
+
+.app-conent {
+    flex: 1 0;
+}
+
+.app-title {
+    font: 2.5em sans-serif;
+    margin: var(--main-padding);
+}
+
+.title {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.switch-app {
+    padding: var(--main-padding);
+}
+
+.switch-app > .icon {
+    width: 2em;
+    height: 2em;
+}
+
+.switch-app:hover {
+    background-color: hsl(200, 25%, 53%);
+}
+
+.switch-app:active {
+    background-color: hsl(200, 100%, 70%);
+}
+
+input,
+select {
+    line-height: calc(var(--input-height) / var(--main-font-height-no-units));
+    height: calc(var(--input-height) / var(--main-font-height-no-units));
+    border: 0;
+    background: hsla(0, 0%, 100%, 0.1);
+
+    color: hsl(0, 0%, 100%);
+    font: var(--main-font-height) sans-serif;
+}
+
+input:focus,
+select:focus {
+    outline: solid grey thin;
+}
+
+.chord-input {
+    width: 7em;
+    padding-left: var(--main-padding);
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.chord-notes {
+    color: hsl(0, 0%, 100%);
+    font: 1.25em sans-serif;
+    padding: var(--main-padding);
+
+    display: flex;
+    align-items: center;
+}
+
+.input-wrap {
+    border-bottom: 1px solid #9e9e9e;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    padding: 0;
+}
+
+.input-wrap:hover {
+    border-color: input-hover-color();
+}
+
+.div-wrap {
+    display: flex;
+    padding: var(--main-padding);
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='1em' width='1em' viewBox='0 0 1 1' xmlns='http://www.w3.org/2000/svg'><path d='M0 0 1 0 0.5 1'/><path d='1 1 L0.5 1' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: calc(100% - 0.25em);
+    background-position-y: 50%;
+
+    padding: 0 1em 0 calc(var(--main-padding) - var(--select-pad));
+}
+
+option {
+    background-color: rgb(49, 49, 49);
+}
+
+.chord-selector {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.chord-selector-text {
+    display: flex;
+}
+
+.chord-selector-selects {
+    display: flex;
+}
+
+.fretboard-list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.input-bar {
+    margin-bottom: 1em;
+}
+
+@media (max-width: 55em) {
+    .tuning {
+        display: flex;
+        flex-flow: row wrap;
+        padding-top: 0.4em;
+    }
+
+    .tuning-label::after {
+        content: ":";
+    }
+
+    .input-bar {
+        display: flex;
+        flex-flow: row wrap;
+    }
+}
+
+/* I'm not sure why "all and" is required, but it seems like it is. 
+   It's used because we can't do min-width: calc(55em + 1px)
+*/
+@media not all and (max-width: 55em) {
+    /* Only apply when on "cortab" page because we only want to shift it up for the chord selector
+    that is on the cortab page. */
+    .cortab .tuning {
+        position: relative;
+        top: calc(-1px - 1 * var(--input-height) - 2 * var(--main-padding));
+        /* * (1 + 2 * var(--main-padding))); */
+    }
+
+    .input-bar {
+        display: flex;
+        flex-flow: row nowrap;
+    }
+}
+
+.error {
+    word-wrap: "break-word";
+    font: "3em white monospace";
+}
