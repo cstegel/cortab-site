@@ -1,0 +1,28 @@
+:root {
+    --app-bg-color: hsl(0, 0%, 10%);
+    --main-font-height-no-units: 1.7;
+    --main-font-height: calc(var(--main-font-height-no-units) * 1em);
+    --main-padding-no-units: 0.2;
+    --main-padding: calc(var(--main-padding-no-units) * 1em);
+    --input-height-no-units: 2.6;
+    --input-height: calc(var(--input-height-no-units) * 1em);
+}
+
+/* Webkit (chrome and safari) */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    :root {
+        --select-pad: 0px;
+    }
+}
+
+/* firefox */
+@-moz-document url-prefix() {
+    :root {
+        /* additional left-pad that firefox adds to <select> between padding and text start */
+        --select-pad: 4px;
+    }
+}
+
+@function input-hover-color($alpha: 100%) {
+    @return hsla(200, 100%, 70%, $alpha);
+}

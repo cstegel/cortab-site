@@ -1,0 +1,31 @@
+.tab-chord-header {
+    font: 2em sans-serif;
+    margin: 0.2em 0 0.2em 0;
+}
+
+.tab-chord {
+    font: 2em sans-serif;
+    padding-left: 0.75em;
+    color: hsl(180, 100%, 50%);
+}
+
+.tab-chord-long {
+    font: 2em sans-serif;
+    padding-left: 0.75em;
+    color: rgb(255, 255, 255);
+}
+
+// li > .tab-chord {
+//     font-size: 0.6em;
+// }
+
+.tab-chord-row {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+li > .tab-chord-row > .tab-chord,
+li > .tab-chord-row > .tab-chord-long {
+    font-size: 1.2em;
+}
