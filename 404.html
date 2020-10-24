@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Cortab</title>
+    <link rel="stylesheet" type="text/css" href="/compiled-css/main.css" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/corylele-angled.svg">
+    <link rel="alternate icon" type="image/png" href="/assets/icons/corylele-angled.png">
+</head>
+
+<body>
+    <script type="module">
+        import init from "./wasm/cortab.js";
+        init();
+    </script>
+    <noscript>
+        This website is made from rust-based WebAssembley. Enable scripts to view the site.
+    </noscript>
+</body>
+
+</html>
+
+<!-- Same as index.html since github pages takes over all routing and redirects to 404 -->
