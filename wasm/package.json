@@ -4,7 +4,7 @@
     "Cory Stegelmeier <cstegel@gmail.com>"
   ],
   "description": "Website for converting music chords to/from tabs for string instruments. Hosted at https://cortab.fun",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "license": "private",
   "repository": {
     "type": "git",
