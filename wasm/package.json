@@ -3,7 +3,13 @@
   "collaborators": [
     "Cory Stegelmeier <cstegel@gmail.com>"
   ],
-  "version": "0.1.0",
+  "description": "Website for converting music chords to/from tabs for string instruments. Hosted at https://cortab.fun",
+  "version": "1.0.0",
+  "license": "private",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cstegel/cortab"
+  },
   "files": [
     "cortab_bg.wasm",
     "cortab.js",

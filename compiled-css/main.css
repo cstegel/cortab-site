@@ -1,4 +1,5 @@
 :root {
+  --main-font-color: white;
   --app-bg-color: hsl(0, 0%, 10%);
   --main-font-height-no-units: 1.7;
   --main-font-height: calc(var(--main-font-height-no-units) * 1em);
@@ -21,6 +22,47 @@
     --select-pad: 4px;
   }
 }
+.title-swap-anchor {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  text-decoration: none;
+  color: var(--main-font-color);
+}
+
+.app-title {
+  font: 2.5em sans-serif;
+  margin: var(--main-padding);
+  display: flex;
+}
+
+.switch-app {
+  padding: var(--main-padding);
+  display: flex;
+}
+
+.title-swap-anchor:hover {
+  background-color: #6991a5;
+}
+
+.title-swap-anchor:active {
+  background-color: #66ccff;
+}
+
+.switch-app > .icon {
+  /* calculate filter from color with https://codepen.io/sosuke/pen/Pjoqqp 
+  Include brightness(0) saturate(100%) first if icon isn't 100% black
+  */
+  filter: brightness(0) saturate(100%) invert(74%) sepia(5%) saturate(5274%) hue-rotate(171deg) brightness(99%) contrast(105%);
+  width: 2em;
+  height: 2em;
+}
+
+input[type=checkbox] {
+  outline: 1px solid white;
+  vertical-align: middle;
+}
+
 .fretboard {
   position: relative;
   padding: var(--main-padding) 0 var(--main-padding) 0;
@@ -110,8 +152,48 @@
 
 .note {
   flex: 1 1;
-  width: 2em;
+  width: 3em;
   text-align: right;
+}
+
+.note-muted, .string-muted {
+  color: red;
+}
+
+.note-unused {
+  color: #4d4d4d;
+}
+
+.string-muted {
+  background-color: red;
+}
+
+.string-unused {
+  background-color: #4d4d4d;
+}
+
+.icon {
+  /* calculate filter from color with https://codepen.io/sosuke/pen/Pjoqqp 
+  Include brightness(0) saturate(100%) first if icon isn't 100% black
+  */
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(2deg) brightness(107%) contrast(102%);
+  height: 1.4em;
+  width: 1.4em;
+}
+
+.tab-options {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.tab-options > label {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.tab-options > label > input {
+  margin-right: 0.5em;
 }
 
 .note-input {
@@ -130,15 +212,6 @@
   height: calc(var(--input-height) / var(--main-font-height-no-units));
   line-height: calc(var(--input-height) / var(--main-font-height-no-units));
   padding: calc(var(--main-padding) / var(--main-font-height-no-units));
-}
-
-.icon {
-  /* calculate filter from color with https://codepen.io/sosuke/pen/Pjoqqp 
-  Include brightness(0) saturate(100%) first if icon isn't 100% black
-  */
-  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(2deg) brightness(107%) contrast(102%);
-  height: 1.4em;
-  width: 1.4em;
 }
 
 .tuning-bar {
@@ -185,70 +258,7 @@
   align-items: flex-start;
 }
 
-* {
-  /* Force width & height to include padding & borders */
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  background-color: var(--app-bg-color);
-}
-
-.app {
-  background-color: var(--app-bg-color);
-  color: white;
-  margin-left: 1em;
-  margin-right: 1em;
-  margin-top: 1em;
-}
-
-.app-layout {
-  display: flex;
-  flex-flow: row nowrap;
-}
-
-.app-before,
-.app-after {
-  flex: 1 1;
-}
-
-.app-conent {
-  flex: 1 0;
-}
-
-.app-title {
-  font: 2.5em sans-serif;
-  margin: var(--main-padding);
-}
-
-.title {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-}
-
-.switch-app {
-  padding: var(--main-padding);
-}
-
-.switch-app > .icon {
-  width: 2em;
-  height: 2em;
-}
-
-.switch-app:hover {
-  background-color: #6991a5;
-}
-
-.switch-app:active {
-  background-color: #66ccff;
-}
-
-input,
+input:not([type=checkbox]),
 select {
   line-height: calc(var(--input-height) / var(--main-font-height-no-units));
   height: calc(var(--input-height) / var(--main-font-height-no-units));
@@ -356,7 +366,7 @@ option {
 @media not all and (max-width: 55em) {
   /* Only apply when on "cortab" page because we only want to shift it up for the chord selector
   that is on the cortab page. */
-  .cortab .tuning {
+  .cortab .tuning-and-opts {
     position: relative;
     top: calc(-1px - 1 * var(--input-height) - 2 * var(--main-padding));
     /* * (1 + 2 * var(--main-padding))); */
@@ -370,6 +380,11 @@ option {
 .error {
   word-wrap: "break-word";
   font: "3em white monospace";
+}
+
+.tuning-and-opts {
+  display: flex;
+  flex-flow: column;
 }
 
 .tab-chord-header {
@@ -400,8 +415,40 @@ li > .tab-chord-row > .tab-chord-long {
   font-size: 1.2em;
 }
 
+* {
+  /* Force width & height to include padding & borders */
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
 .hide {
   display: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--app-bg-color);
+}
+
+.app {
+  background-color: var(--app-bg-color);
+  color: white;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-top: 1em;
+}
+
+.app-layout {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.app-layout::before,
+.app-layout::after {
+  content: "";
+  flex: 1 1;
 }
 
 /*# sourceMappingURL=main.css.map */
